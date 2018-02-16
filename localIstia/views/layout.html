@@ -11,6 +11,7 @@
     <link href="/static/stylesheets/small-business.css" rel="stylesheet">
     <link href="/static/stylesheets/map.css" rel="stylesheet">
     <link href="/static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script defer src="/static/vendor/font-awesome/js/fontawesome-all.js"></script>
 
   </head>
   <body>
@@ -29,29 +30,47 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" data-toggle="modal" data-target="#myModal">
                     <li class="list-inline-item">
                       <i class="fas fa-plus"></i>
                       <i class="fas fa-map-marker-alt"></i>
                     </li>
-                </a>
+                  </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
+                  <a class="nav-link" href="about">About</a>
               </li>
             </ul>
           </div>
         </div>
       </nav>
+
+      <!-- Modal -->
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+  
+    </div>
+  </div>
     {% block content %}
     {% endblock %}
     <!-- Footer -->
     <footer class="py-5 bg-dark sticky-footer">
         <div class="container">
-          <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+          <p class="m-0 text-center text-white">Copyright &copy; Local'Istia 2017</p>
         </div>
     </footer>
 
@@ -59,6 +78,9 @@
     <script src="/static/vendor/jquery/jquery.min.js"></script>
     <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/static/javascripts/map.js"></script>
+
+    <!-- API google map -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1gihQv-kHjLscCQABx7eESNzuNijIYXo&callback=initMap"> </script>
 
   </body>
 </html>
