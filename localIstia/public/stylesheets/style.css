@@ -6,3 +6,8 @@ body {
 a {
   color: #00B7FF;
 }
+
+.sticky-footer{
+  position: absolute !important;
+  bottom: 0 !important;
+}

@@ -30,6 +30,7 @@ app.use('/static',express.static(path.join(__dirname, 'public')));
 
 //envoie la requete vers routes/index.js
 app.use('/', index);
+
 //idem mais vers routes/users.js
 app.use('/users', users);
 
