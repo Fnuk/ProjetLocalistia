@@ -52,11 +52,50 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
+          <h3 class="modal-title">Demande de marqueur</h3>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
         </div>
         <div class="modal-body">
-          <p>Some text in the modal.</p>
+         <form class="form-horizontal justify-content-center center-block">
+          <fieldset>
+          <!-- Text input-->
+          <div class="form-group row">
+            <label class="col-md-4 control-label" for="firstname">Prénom</label>  
+            <div class="col-md-4">
+            <input id="firstname" name="firstname" placeholder="Alcie" class="form-control input-md" required="" type="text">
+              
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group row">
+            <label class="col-md-4 control-label" for="name">Nom</label>  
+            <div class="col-md-4">
+            <input id="name" name="name" placeholder="Fnuk" class="form-control input-md" required="" type="text">
+              
+            </div>
+          </div>
+
+          <!-- email Input-->
+          <div class="form-group row">
+            <label class="col-md-4 control-label" for="email">E-mail</label>
+            <div class="col-md-4">
+              <div class="input-group">
+                <input id="email" name="email" class="form-control" placeholder="John.Doe" required="" type="email">
+              </div>
+              
+            </div>
+          </div>
+          <!-- Button -->
+          <div class="form-group row">
+            <label class="col-md-4 control-label" for="send"></label>
+            <div class="col-md-4">
+              <button id="send" name="send" class="btn btn-success">Envoyer</button>
+            </div>
+          </div>
+
+          </fieldset>
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
