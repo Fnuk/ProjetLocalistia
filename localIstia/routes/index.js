@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var JQuery = require('jquery');
+ 
 
 //Gestion des routes localhost.../
 
@@ -7,15 +9,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'LOCALISTIA' });
 
-  $('#addMarkerForm').submit(function(event){
-    event.preventDefault();
-    socket.emit('addMarker', {
-      firstname  : $('#firstname').val(),
-      name  : $('#name').val(),
-      email : $('#email').val()
-    });
-  });
-
 });
+
 
 module.exports = router;
