@@ -56,12 +56,12 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-         <form id="addMarkerForm" class="form-horizontal justify-content-center center-block">
+         <form id="addMarkerForm" class="form-horizontal justify-content-center center-block" action="/add" method="POST">
           <fieldset>
           <!-- Text input-->
           <div class="form-group row">
             <label class="col-md-4 control-label" for="firstname">Prénom</label>  
-            <div class="col-md-4">
+            <div class="col-md-6">
             <input id="firstname" name="firstname" placeholder="Alcie" class="form-control input-md" required="" type="text">
               
             </div>
@@ -70,7 +70,7 @@
           <!-- Text input-->
           <div class="form-group row">
             <label class="col-md-4 control-label" for="name">Nom</label>  
-            <div class="col-md-4">
+            <div class="col-md-6">
             <input id="name" name="name" placeholder="Fnuk" class="form-control input-md" required="" type="text">
               
             </div>
@@ -79,9 +79,9 @@
           <!-- email Input-->
           <div class="form-group row">
             <label class="col-md-4 control-label" for="email">E-mail</label>
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="input-group">
-                <input id="email" name="email" class="form-control" placeholder="John.Doe" required="" type="email">
+                <input id="email" name="email" class="form-control" placeholder="John.Doe@mail.fr" required="" type="email">
               </div>
               
             </div>
@@ -89,10 +89,10 @@
           <!-- Button -->
           <div class="form-group row">
             <label class="col-md-4 control-label" for="send"></label>
-            <div class="col-md-4">
+            <div class="col-md-6">
               <button id="send" name="send" class="btn btn-success">Envoyer</button>
             </div>
-          </div>
+          </div> 
 
           </fieldset>
           </form>
@@ -117,13 +117,11 @@
     <script src="/static/vendor/jquery/jquery.min.js"></script>
     <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/static/javascripts/map.js"></script>
-    <script src="client.js"></script>
+    
 
     <!-- API google map -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1gihQv-kHjLscCQABx7eESNzuNijIYXo&callback=initMap"> </script>
 
-    <!--Socket-->
-    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
 
   </body>
 </html>

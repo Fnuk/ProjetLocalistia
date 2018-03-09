@@ -4,72 +4,87 @@
 
 
 {% block content %}
+<div class="container-fluid">
+  <div class="text-center center-block">
+      <h4>Formulaire de renseignement</h4>
 
-<form>
-  <div class="row">
-    <div class="col">
-      <input type="text" class="form-control" placeholder="First name">
-    </div>
-    <div class="col">
-      <input type="text" class="form-control" placeholder="Last name">
-    </div>
+      <p class="col-md-4 mx-auto">Veuillez renseigner les champs ci-dessous afin de permettre à vos camarades d'avoir des informations sur la vie en général dans le pays dans lequel vous avez été, ceci leur facilitera la tache, merci à vous et merci pour eux</p>
   </div>
-   <div class="form-group">
-    <label for="inputAddress">Addresse</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-  </div>
-    <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputCity">City</label>
-      <input type="text" class="form-control" id="inputCity">
-    </div>
-        <div class="form-group col-md-2">
-      <label for="inputZip">Code Postal / Zip</label>
-      <input type="text" class="form-control" id="inputZip">
-    </div>
-    <div class="form-group col-md-4">
-      <label for="inputCountry">Pays</label>
-      <input type="text" class="form-control" id="inputCountry">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="goodDeals">Bons plans</label>
-    <textarea class="form-control" id="goodDeals" rows="3"></textarea>
-  </div>
-  <div class="form-group">
-    <label for="devises">Devises du pays</label>
-    <textarea class="form-control" id="goodDeals" rows="3"></textarea>
-  </div>
-  <fieldset class="form-group">
-    <div class="row">
-      <legend class="col-form-label col-sm-2 pt-0">Coût de la vie</legend>
-      <div class="col-sm-10">
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-          <label class="form-check-label" for="gridRadios1">
-            €
-          </label>
+	<!-- Page Content -->
+	<div class="container-fluid">
+    <form>
+      <div class="row">
+        <div class="col">
+          <label for="firstname">Prénom :</label>
+          <input type="text" class="form-control" placeholder="First name">
         </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-          <label class="form-check-label" for="gridRadios2">
-            €€
-          </label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
-          <label class="form-check-label" for="gridRadios3">
-            €€€
-          </label>
+        <div class="col">
+          <label for="lastname">nom :</label>
+          <input type="text" class="form-control" placeholder="Last name">
         </div>
       </div>
-    </div>
-  <div class="form-group row">
-    <div class="col-sm-10">
-      <button type="submit" class="btn btn-primary">Envoyer</button>
-    </div>
+      <div class="form-group">
+        <label for="inputAddress">Addresse :</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+      </div>
+        <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputCity">City :</label>
+          <input type="text" class="form-control" id="inputCity">
+        </div>
+            <div class="form-group col-md-2">
+          <label for="inputZip">Code Postal / Zip :</label>
+          <input type="text" class="form-control" id="inputZip">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputCountry">Pays :</label>
+          <input type="text" class="form-control" id="inputCountry">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="goodDeals">Bons plans :</label>
+        <textarea class="form-control" id="goodDeals" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="devises">Devises du pays :</label>
+        <input type="text" class="form-control" id="goodDeals">
+      </div>
+      <fieldset class="form-group">
+        <div class="row">
+          <legend class="col-form-label col-sm-2 pt-0">Coût de la vie :</legend>
+          <div class="col-sm-10">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+              <label class="form-check-label" for="gridRadios1">
+                €
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+              <label class="form-check-label" for="gridRadios2">
+                €€
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3">
+              <label class="form-check-label" for="gridRadios3">
+                €€€
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="contactMe">Pour vous contacter (si vous le desirez)</label>
+          <textarea class="form-control" id="contactMe" rows="2"></textarea>
+        </div>
+      <div class="form-group row center-block">
+        <div class="mx-auto ">
+          <button type="submit" class="btn btn-primary">Envoyer</button>
+        </div>
+      </div>
+    </form>
   </div>
-</form>
+</div>
 
 
 {% endblock %}
