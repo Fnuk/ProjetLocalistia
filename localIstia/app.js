@@ -12,6 +12,7 @@ var db = monk('localhost:27017/nodelocalistia');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var about = require('./routes/about');
+var infos = require('./routes/informations');
 
 var app = express();
 
@@ -34,6 +35,8 @@ app.use('/static',express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 //route vers routes/about.js
 app.use('/about', about);
+//route vers routes/informations.js
+app.use('/informations', infos);
 //idem mais vers routes/users.js
 app.use('/users', users);
 
