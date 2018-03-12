@@ -12,7 +12,7 @@
   </div>
 	<!-- Page Content -->
 	<div class="container-fluid">
-    <form>
+    <form id="addInfos" action="/informations/sendInfos" method="POST" >
       <div class="row">
         <div class="col">
           <label for="firstname">Prénom :</label>
@@ -47,26 +47,26 @@
       </div>
       <div class="form-group">
         <label for="devises">Devises du pays :</label>
-        <input type="text" class="form-control" id="goodDeals">
+        <input type="text" class="form-control" id="devises">
       </div>
       <fieldset class="form-group">
         <div class="row">
           <legend class="col-form-label col-sm-2 pt-0">Coût de la vie :</legend>
           <div class="col-sm-10">
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="cheap" checked>
               <label class="form-check-label" for="gridRadios1">
                 €
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="middle">
               <label class="form-check-label" for="gridRadios2">
                 €€
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3">
+              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="expensive">
               <label class="form-check-label" for="gridRadios3">
                 €€€
               </label>

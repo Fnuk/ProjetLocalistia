@@ -42,7 +42,7 @@ router.post('/add', function(req, res, next) {
             
         }     
 
-        db.singleUrl.insert({"firstname":req.body.firstname, "lastname":req.body.name, "email":req.body.email, "hash":"" });
+        db.singleUrl.insert({"firstname":req.body.firstname, "lastname":req.body.name, "email":req.body.email, "hash":hashCode(req.body.name.concat(req.body.email)) });
         
         console.log('Message sent: %s', info.messageId);
         console.log('Message sent to : %s', req.body.email);
@@ -51,5 +51,16 @@ router.post('/add', function(req, res, next) {
     });
 
 });
+
+    function hashCode(str){
+        var hash = 0;
+        if (str.length == 0) return hash;
+        for (i = 0; i < str.length; i++) {
+            char = str.charCodeAt(i);
+            hash = ((hash<<5)-hash)+char;
+            hash = hash & hash; // Convert to 32bit integer
+        }
+        return hash;
+    }
 
 module.exports = router;
