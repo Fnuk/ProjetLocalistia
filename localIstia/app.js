@@ -13,6 +13,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var about = require('./routes/about');
 var infos = require('./routes/informations');
+var map = require('./routes/map');
 
 var app = express();
 
@@ -37,15 +38,22 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/static',express.static(path.join(__dirname, 'public')));
 
+// Rendre la Bdd accessible à notre "router"
+app.use(function(req, res, next){
+  req.db = db;
+  next();
+});
+
 //envoie la requete vers routes/index.js
 app.use('/', index);
 //route vers routes/about.js
 app.use('/about', about);
 //route vers routes/informations.js
 app.use('/informations', infos);
+//idem mais vers routes/map.js
+app.use('/map', map);
 //idem mais vers routes/users.js
 app.use('/users', users);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

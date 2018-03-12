@@ -39,7 +39,6 @@ router.post('/add', function(req, res, next) {
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             return console.log(error);
-            
         }     
 
         db.singleUrl.insert({"firstname":req.body.firstname, "lastname":req.body.name, "email":req.body.email, "hash":hashCode(req.body.name.concat(req.body.email)) });
