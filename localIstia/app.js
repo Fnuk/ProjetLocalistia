@@ -13,6 +13,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var about = require('./routes/about');
 var infos = require('./routes/informations');
+var map = require('./routes/map');
 
 var app = express();
 
@@ -43,8 +44,11 @@ app.use('/', index);
 app.use('/about', about);
 //route vers routes/informations.js
 app.use('/informations', infos);
+//idem mais vers routes/map.js
+app.use('/map', map);
 //idem mais vers routes/users.js
 app.use('/users', users);
+
 
 
 // catch 404 and forward to error handler

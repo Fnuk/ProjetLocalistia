@@ -1,6 +1,6 @@
-function displayMarkers(){
+function displayAllMarkers(){
     $.ajax({
-        url: 'http://localhost:3000/map',
+        url: 'http://localhost:3000/map/all',
         type: 'POST',
         dataType: "json",
         cache: false,
@@ -25,4 +25,4 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 }).addTo(mymap);
 
 
-mymap.on('click', displayMarkers);
+mymap.on('click', displayAllMarkers);
