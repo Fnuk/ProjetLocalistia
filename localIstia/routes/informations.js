@@ -18,31 +18,39 @@ router.post('/sendInfos', function(req, res, next) {
 
   //initialize le géocoder
   initialize();
+
+  //Initialisation de l'objet à sauver en base
+  var infos = {};
   
   //on géolocalise le lieu via l'adresse
   var address = req.body.inputAdresse+" "+req.body.inputCity+" "+req.body.inputCountry;
-    geocoder.geocode( { 'address': address}, function(results, status) {
-      if (status == 'OK') {
-          db.markerCollection.insert({"lat":results[0].geometry.location.lat, "long":results[0].geometry.location.lng});
-      } else {
-        alert('Geocode was not successful for the following reason: ' + status);
-      }
-    });
+  geocoder.geocode({'address': address}, function(results, status) {
+    if (status == 'OK') {
+        // db.markerCollection.insert({"type":"Point", "coordinates":[results[0].geometry.location.lat, results[0].geometry.location.lng]});
+        infos.type = "Point"
+        infos.coordinates = [results[0].geometry.location.lat, results[0].geometry.location.lng]
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+
+  // update objet à sauver dans la base
+  infos.adresse = req.body.inputAdresse,
+  infos.ville = req.body.inputCity, 
+  infos.codePostal = req.body.inputZip, 
+  infos.pays = req.body.inputCountry,
+  infos.goodDeals = req.body.goodDeals,
+  infos.devises = req.body.devises,
+  infos.coutVie = req.body.gridRadios,
+  infos.contact = req.body.contactMe;
 
   //ici inserer les données récupérée du formulaire
-  db.informations.insert({"adresse": req.body.inputAdresse,
-                          "ville": req.body.inputCity, 
-                          "codePostal": req.body.inputZip, 
-                          "pays": req.body.inputCountry,
-                          "goodDeals": req.body.goodDeals,
-                          "devises": req.body.devises,
-                          "coutVie": req.body.gridRadios,
-                         "contact": req.body.contactMe});
+  db.markerCollection.insert(infos);
   res.redirect('/informations/thanks');
 });
 
 router.post('/informations/thanks', function(req, res, next) {
-  res.render('thanks');
+  res.render('Thanks');
 });
 
 module.exports = router;

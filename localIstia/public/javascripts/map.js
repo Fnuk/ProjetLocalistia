@@ -1,8 +1,30 @@
+function getOneMarker(latlng) {
+  $.ajax({
+    url: 'http://localhost:3000/map/all',
+    type: 'POST',
+    dataType: "json",
+    data: {"coordinates":latlng},
+    cache: false,
+    timeout: 5000,
+    success: function(data) {
+      return data;
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+        console.log('error ' + textStatus + " " + errorThrown);
+    }
+  });
+}
+
 function onMarkerMouseOver(event){
-    var popup = L.popup()
+  var data = getOneMarker(event.latlng);
+  var popup = L.popup()
     popup.setLatLng(event.latlng)
-         .setContent("You clicked the map at " + event.latlng.toString())
+         .setContent("Adresse :"+ data.adresse + "\n" + "Commentaire :" + data.goodDeals.subString(0,50)+"...(Clic pour voir +)")
          .openOn(mymap);
+}
+
+function onMarkerClick(event){
+  var data = getOneMarker(event.latlng);
 }
 
 function displayAllMarkers(){
@@ -16,6 +38,7 @@ function displayAllMarkers(){
             data.forEach(elem => {
               var marker = L.marker(elem.coordinates).addTo(mymap);
               marker.on('mouseover', onMarkerMouseOver);
+              marker.on('click', onMarkerClick);
             });
         },
         error: function(jqXHR, textStatus, errorThrown) {
