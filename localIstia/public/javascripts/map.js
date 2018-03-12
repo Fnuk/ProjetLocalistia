@@ -1,3 +1,41 @@
+function toggleSearchInfo(){
+  $("#recherche").toggleClass("hidden");
+  $("#info").toggleClass("hidden");
+}
+
+function getOneMarker(latlng) {
+  $.ajax({
+    url: 'http://localhost:3000/map/markerinfo',
+    type: 'POST',
+    dataType: "json",
+    data: {"coordinates":latlng},
+    cache: false,
+    timeout: 5000,
+    success: function(data) {
+      return data;
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+        console.log('error ' + textStatus + " " + errorThrown);
+    }
+  });
+}
+
+function onMarkerMouseOver(event){
+  var data = getOneMarker(event.latlng);
+  var popup = L.popup()
+    popup.setLatLng(event.latlng)
+         .setContent("Adresse :"+ data.adresse + "\n" + "Commentaire :" + data.goodDeals.subString(0,50)+"...(Clic pour voir +)")
+         .openOn(mymap);
+}
+
+function onMarkerClick(event){
+  var data = getOneMarker(event.latlng);
+  toggleSearchInfo();
+  $("textarea#accomodations").val(data.adresse + "\n" + data.contactMe)
+  $("textarea#devise").val(data.devises + "\n" + data.coutVie)
+  $("textarea#goodDeals").val(data.goodDeals)
+}
+
 function displayAllMarkers(){
     $.ajax({
         url: 'http://localhost:3000/map/all',
@@ -8,6 +46,8 @@ function displayAllMarkers(){
         success: function(data) {
             data.forEach(elem => {
               var marker = L.marker(elem.coordinates).addTo(mymap);
+              marker.on('mouseover', onMarkerMouseOver);
+              marker.on('click', onMarkerClick);
             });
         },
         error: function(jqXHR, textStatus, errorThrown) {

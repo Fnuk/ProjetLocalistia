@@ -30,7 +30,7 @@
 								</div>
 							</div>
 							<!-- Select Basic -->
-							<div class="form-group">
+							<div id=recherche class="form-group">
 								<label class="col-md-4 control-label" for="idPays">Pays :</label>
 								<div class="col-md-4">
 									<select id="idPays" name="idPays" class="form-control">
@@ -61,22 +61,25 @@
 							</div>
 						</fieldset>
 					</form>
-					<a class="btn btn-primary btn-lg" href="#">Call to Action!</a>
+					<a class="btn btn-primary btn-lg" href="#">Rechercher</a>
 					<!--endSearch mode-->
 					<!--Informations mode-->
-          <div hidden>
+          <div id=info hidden>
             <div class="row">
               <label for="accomodations">Logements et contacts</label>
               <textarea class="form-control disabled" id="accomodations" rows="3"></textarea>
             </div>
             <div class="row">
               <label for="accomodations">Devises et cout de la vie :</label>
-              <p></p>
+              <textarea class="form-control disabled" id="devise" rows="3"></textarea>
             </div>
             <div class="row">
               <label for="goodDeals">Bons plans</label>
               <textarea class="form-control disabled" id="goodDeals" rows="3"></textarea>
-            </div>
+						</div>
+						<div class="row">
+							<button class="btn btn-primary btn-lg" type="button" onclick="toggleSearchInfo()">Retour recherche</button>
+						</div>
           </div>
 					<!--endInformations Mode-->
 				</div>
@@ -86,7 +89,7 @@
 			<!-- Call to Action Well -->
 			<div class="card text-white bg-secondary my-4 text-center">
 				<div class="card-body">
-					<p class="text-white m-0">This call to action card is a great place to showcase some important information or display a clever tagline!</p>
+					<p class="text-white m-0">LocalIstia une solution de l'avenir !</p>
 				</div>
 			</div>
 			<!-- /.row -->
