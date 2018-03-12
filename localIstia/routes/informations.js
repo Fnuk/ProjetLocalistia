@@ -3,12 +3,14 @@ var router = express.Router();
 //pour récuperer la lat et lng depuis l'adresse renseignée utilisation de node-geocoder (middleware avec google api)
 var NodeGeocoder = require('node-geocoder');
 
+
+
 //option du geocoder
 var options = {
  provider: 'google',
 
  // Optional depending on the providers
- httpAdapter: 'http', // Default
+ httpAdapter: 'https', // Default
  apiKey: 'AIzaSyC1gihQv-kHjLscCQABx7eESNzuNijIYXo', // for Mapquest, OpenCage, Google Premier
  formatter: null // 'gpx', 'string', ...
 };
@@ -27,15 +29,16 @@ router.get('/', function(req, res, next) {
 router.post('/sendInfos', function(req, res, next) {
  var dbinfo = req.db.collection('informations');
  var dbmarker = req.db.collection('markerCollection');
-
+console.log(req.body)
  //on géolocalise le lieu via l'adresse
- var address = req.body.inputAdresse + " " + req.body.inputCity + " " + req.body.inputCountry;
+ var address = req.body.inputAddress + " " + req.body.inputCity + " " + req.body.inputCountry;
+ console.log(address);
  geocoder.geocode(address)
   .then(function(result) {
    console.log(result);
    dbmarker.insert({
-    "lat": results[0].latitude,
-    "long": results[0].longitude
+    "lat": result[0].latitude,
+    "long": result[0].longitude
    });
   })
   .catch(function(status) {
@@ -44,7 +47,7 @@ router.post('/sendInfos', function(req, res, next) {
 
  //ici inserer les données récupérée du formulaire
  dbinfo.insert({
-  "adresse": req.body.inputAdresse,
+  "adresse": req.body.inputAddress,
   "ville": req.body.inputCity,
   "codePostal": req.body.inputZip,
   "pays": req.body.inputCountry,
