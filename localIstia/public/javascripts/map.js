@@ -1,3 +1,10 @@
+function onMarkerMouseOver(event){
+    var popup = L.popup()
+    popup.setLatLng(event.latlng)
+         .setContent("You clicked the map at " + event.latlng.toString())
+         .openOn(mymap);
+}
+
 function displayAllMarkers(){
     $.ajax({
         url: 'http://localhost:3000/map/all',
@@ -8,6 +15,7 @@ function displayAllMarkers(){
         success: function(data) {
             data.forEach(elem => {
               var marker = L.marker(elem.coordinates).addTo(mymap);
+              marker.on('mouseover', onMarkerMouseOver);
             });
         },
         error: function(jqXHR, textStatus, errorThrown) {
