@@ -1,6 +1,11 @@
+function toggleSearchInfo(){
+  $("#recherche").toggleClass("hidden");
+  $("#info").toggleClass("hidden");
+}
+
 function getOneMarker(latlng) {
   $.ajax({
-    url: 'http://localhost:3000/map/all',
+    url: 'http://localhost:3000/map/markerinfo',
     type: 'POST',
     dataType: "json",
     data: {"coordinates":latlng},
@@ -25,6 +30,10 @@ function onMarkerMouseOver(event){
 
 function onMarkerClick(event){
   var data = getOneMarker(event.latlng);
+  toggleSearchInfo();
+  $("textarea#accomodations").val(data.adresse + "\n" + data.contactMe)
+  $("textarea#devise").val(data.devises + "\n" + data.coutVie)
+  $("textarea#goodDeals").val(data.goodDeals)
 }
 
 function displayAllMarkers(){

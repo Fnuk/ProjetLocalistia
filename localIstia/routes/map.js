@@ -6,7 +6,7 @@ router.post('/all', function(req, res) {
     var db = req.db;
     var collection = db.get('markerCollection');
   
-    collection.find({}, {_id: 0, coordinates: 1}, function(err, data){
+    collection.find({}, {_id: 0}, function(err, data){
         if(err) console.log('Erreur :' + err);
         console.log(data)
         res.send(data);
@@ -16,8 +16,8 @@ router.post('/all', function(req, res) {
 router.post('/markerinfo', function(req, res) {
     var db = req.db;
     var collection = db.get('markerCollection')
-    
-    collection.find({}, {_id: 0, coordinates: 1}, function(err, data){
+    console.log(req.body.coordinates)
+    collection.find({"coordinates":req.body.coordinates}, {}, function(err, data){
         if(err) console.log('Erreur :' + err);
         console.log(data)
         res.send(data);
