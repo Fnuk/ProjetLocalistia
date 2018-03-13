@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router(); 
 var mailer = require("nodemailer"); //pour utiliser le mailer 
 
-var link = "http://localhost:3000/informations";
+var link = "http://localhost:3000/informations/";
 
 //pour l'envoi de mail, identification de l'expediteur 
 var transporter = mailer.createTransport({
@@ -36,6 +36,10 @@ router.post('/add', function(req, res, next) {
 
     var dbUrl = req.db.get('singleUrl');
 
+    var hashPartUrl = hashCode(req.body.name.concat(req.body.email));
+    dbUrl.insert({"firstname":req.body.firstname, "lastname":req.body.name, "email":req.body.email, "hash":hashPartUrl, "state":"1" });
+    link = link.concat(hashPartUrl);
+    console.log(link);
   //préparation du mail à envoyer
   var mailOptions = {
 					from: "contact.localistia@gmail.com",
@@ -50,8 +54,6 @@ router.post('/add', function(req, res, next) {
         if (error) {
             return console.log(error);
         }     
-
-        dbUrl.insert({"firstname":req.body.firstname, "lastname":req.body.name, "email":req.body.email, "hash":hashCode(req.body.name.concat(req.body.email)) });
         
         console.log('Message sent: %s', info.messageId);
         console.log('Message sent to : %s', req.body.email);
