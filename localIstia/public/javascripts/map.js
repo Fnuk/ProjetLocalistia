@@ -4,11 +4,12 @@ function toggleSearchInfo(){
 }
 
 function getOneMarker(latlng) {
+  console.log(latlng);
   $.ajax({
     url: 'http://localhost:3000/map/markerinfo',
     type: 'POST',
     dataType: "json",
-    data: {"lat": latlng.lat, "lng":latlng.lng},
+    data: {"lat": latlng.lat, "lng":latlng.long},
     cache: false,
     timeout: 5000,
     success: function(data) {
@@ -21,15 +22,16 @@ function getOneMarker(latlng) {
 }
 
 function onMarkerMouseOver(event){
-  var data = getOneMarker(event.latlng);
+  console.log(event);
+  var data = getOneMarker(event);
   var popup = L.popup()
-  popup.setLatLng(event.latlng)
+  popup.setLatLng(event)
         .setContent("Adresse :"+ data.adresse + "\n" + "Commentaire :" + data.goodDeals.subString(0,50)+"...(Clic pour voir +)")
         .openOn(mymap);
 }
 
 function onMarkerClick(event){
-  var data = getOneMarker(event.latlng);
+  var data = getOneMarker(event);
   toggleSearchInfo();
   $("textarea#accomodations").val(data.adresse + "\n" + data.contactMe)
   $("textarea#devise").val(data.devises + "\n" + data.coutVie)
@@ -43,9 +45,9 @@ function displayAllMarkers(){
         dataType: "json",
         cache: false,
         timeout: 5000,
-        success: function(data) {
+        success: function(data) {   
             data.forEach(elem => {
-              var marker = L.marker([elem.lat, elem.lng]).addTo(mymap);
+              var marker = L.marker(elem.coordinates).addTo(mymap);
               marker.on('mouseover', onMarkerMouseOver);
               marker.on('click', onMarkerClick);
             });
