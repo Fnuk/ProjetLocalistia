@@ -34,25 +34,10 @@ router.post('/sendInfos', function(req, res, next) {
  console.log(address);
  geocoder.geocode(address)
   .then(function(result) {
-
-   console.log(result);
-   dbmarker.insert({
-    "lat": result[0].latitude,
-    "long": result[0].longitude
-   });
-
-    console.log(result);
-    infos.type = "Point"
-    infos.coordinates = [result[0].latitude, result[0].longitude]
-
-  })
-  .catch(function(status) {
-   console.log('Geocode was not successful for the following reason: ' + status);
-  });
-
-  console.log("ADRESSE:" + req.body.inputAdresse)
   // update objet à sauver dans la base
-  infos.adresse = req.body.inputAdresse,
+  infos.lat = result[0].latitude;
+  infos.lng = result[0].longitude;
+  infos.adresse = result[0].formatedAddress;
   infos.ville = req.body.inputCity, 
   infos.codePostal = req.body.inputZip, 
   infos.pays = req.body.inputCountry,
@@ -60,10 +45,12 @@ router.post('/sendInfos', function(req, res, next) {
   infos.devises = req.body.devises,
   infos.coutVie = req.body.gridRadios,
   infos.contact = req.body.contactMe;
-
-  //ici inserer les données récupérée du formulaire
   dbmarker.insert(infos);
-  console.log("Insertion réussie:" + infos)
+
+  })
+  .catch(function(status) {
+   console.log('Geocode was not successful for the following reason: ' + status);
+  });
   res.redirect('/informations/thanks');
 
 });

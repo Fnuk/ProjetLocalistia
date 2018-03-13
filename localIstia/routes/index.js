@@ -25,8 +25,7 @@ router.get('/', function(req, res, next) {
         dataPays = data;
         if(err) console.log('Erreur :' + err);
     });
-
-  console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALLO "+dataPays);
+    
   res.render('index', { title: 'LOCALISTIA', data : JSON.stringify(dataPays) });
 
 });
@@ -34,7 +33,7 @@ router.get('/', function(req, res, next) {
 /* GET add marker */
 router.post('/add', function(req, res, next) {
 
-    var dbUrl = req.db.collection('singleUrl');
+    var dbUrl = req.db.get('singleUrl');
 
   //préparation du mail à envoyer
   var mailOptions = {

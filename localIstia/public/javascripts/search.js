@@ -1,5 +1,5 @@
 
-/*$.ajax({
+$.ajax({
         url: 'http://localhost:3000/',
         type: 'GET',
         dataType: "json",
@@ -14,5 +14,5 @@
         error: function(jqXHR, textStatus, errorThrown) {
             console.log('error ' + textStatus + " " + errorThrown);
         }
-    });*/
+    });
     
