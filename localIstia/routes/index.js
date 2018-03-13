@@ -16,14 +16,36 @@ var transporter = mailer.createTransport({
 //Gestion des routes localhost.../
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'LOCALISTIA' });
-
+    res.render('index', {title: 'LOCALISTIA'});
 });
 
-/* GET add marker */
+/* POST comcobox recherche */
+router.post('/fillRecherche', function(req, res){
+    var collection = req.db.get('markerCollection');
+    collection.find({}, {_id:0, pays: 1}, function(err, data){
+        collection.distinct('pays', function (err, data){
+          if(err) console.log('Erreur :' + err);
+          res.send(data)  
+        })
+          if(err) console.log('Erreur :' + err);
+  });
+});
+
+router.post('/villeRecherche', function(req, res){
+    var collection = req.db.get('markerCollection');
+    collection.find({}, {_id: 0, pays: 1, ville: 1}, function(err, data){
+        collection.distinct('ville', {pays: req.body.pays}, function (err, data){
+          if(err) console.log('Erreur :' + err);
+          res.send(data)  
+        })
+          if(err) console.log('Erreur :' + err);
+  });
+});
+
+/* POST add marker */
 router.post('/add', function(req, res, next) {
 
-    var dbUrl = req.db.collection('singleUrl');
+    var dbUrl = req.db.get('singleUrl');
 
   //préparation du mail à envoyer
   var mailOptions = {

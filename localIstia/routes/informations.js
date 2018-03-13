@@ -20,36 +20,37 @@ var geocoder = NodeGeocoder(options);
 
 /* GET informations page. */
 router.get('/', function(req, res, next) {
-
-
  res.render('informations');
 
 });
 
 router.post('/sendInfos', function(req, res, next) {
- var dbmarker = req.db.collection('markerCollection');
+ var dbmarker = req.db.get('markerCollection');
+
  var infos = {};
+
  //on géolocalise le lieu via l'adresse
  var address = req.body.inputAddress + " " + req.body.inputCity + " " + req.body.inputCountry;
  geocoder.geocode(address)
   .then(function(result) {
-    // update objet à sauver dans la base
-    infos.coordinates = [result[0].latitude, result[0].longitude]
-    infos.adresse = req.body.inputAddress;
-    infos.ville = req.body.inputCity;
-    infos.codePostal = req.body.inputZip;
-    infos.pays = req.body.inputCountry;
-    infos.goodDeals = req.body.goodDeals;
-    infos.devises = req.body.devises;
-    infos.coutVie = req.body.gridRadios;
-    infos.contact = req.body.contactMe;
-    dbmarker.insert(infos);
+  // update objet à sauver dans la base
+  infos.coordinates = [result[0].latitude, result[0].longitude]
+  infos.adresse = result[0].formattedAddress;
+  infos.ville = req.body.inputCity, 
+  infos.codePostal = req.body.inputZip, 
+  infos.pays = req.body.inputCountry,
+  infos.goodDeals = req.body.goodDeals,
+  infos.devises = req.body.devises,
+  infos.coutVie = req.body.gridRadios,
+  infos.contact = req.body.contactMe;
+  dbmarker.insert(infos);
+
   })
   .catch(function(status) {
    console.log('Geocode was not successful for the following reason: ' + status);
   });
-
   res.redirect('/informations/thanks');
+
 });
 
 router.get('/thanks', function(req, res, next) {
