@@ -18,15 +18,16 @@ var transporter = mailer.createTransport({
 router.get('/', function(req, res, next) {
 
  var collection = req.db.get('markerCollection');
- console.log("collection ",collection);
  var dataPays;
-  collection.find({}, {pays: 1}, function(err, data){
-        console.log("mes datas",data)
+  collection.find({}, {_id:0, pays: 1}, function(err, data){
+      collection.distinct('pays', function (err, data){
+        if(err) console.log('Erreur :' + err);
         dataPays = data;
+      })
         if(err) console.log('Erreur :' + err);
     });
     
-  res.render('index', { title: 'LOCALISTIA', data : JSON.stringify(dataPays) });
+  res.render('index', { title: 'LOCALISTIA', data : dataPays });
 
 });
 

@@ -7,7 +7,7 @@ $.ajax({
         timeout: 5000,
         success: function(data) {
             $('#selectPays').empty();
-            $.each(dataPays, function(i, p) {
+            $.each(data, function(i, p) {
               $('#selectPays').append($('<option></option>').val(p).html(p));
             });
         },
