@@ -7,15 +7,11 @@ Projet HTML - Ei5 Istia - Localisation et description des stages à l'étranger 
 * Les membres du groupe ont globalement touché à tout.
 
 **Technologie utilisées :**
-Gestion de la map *(+ marker)* : Leaflet
-
-Serveur : Node.js 
-
-Gestion des routes : Express 
-
-Moteur de template : Swig 
-
-Base de données : MongoDB 
+* Gestion de la map *(+ marker)* : Leaflet
+* Serveur : Node.js 
+* Gestion des routes : Express 
+* Moteur de template : Swig 
+* Base de données : MongoDB 
 
 
 **Pour tester le site :**
