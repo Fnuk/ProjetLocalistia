@@ -34,8 +34,7 @@ router.post('/sendInfos', function(req, res, next) {
  geocoder.geocode(address)
   .then(function(result) {
     // update objet à sauver dans la base
-    infos.lat = result[0].latitude;
-    infos.lng = result[0].longitude;
+    infos.coordinates = [result[0].latitude, result[0].longitude]
     infos.adresse = req.body.inputAddress;
     infos.ville = req.body.inputCity;
     infos.codePostal = req.body.inputZip;

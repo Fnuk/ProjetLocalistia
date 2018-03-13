@@ -16,11 +16,8 @@ router.post('/all', function(req, res) {
 router.post('/markerinfo', function(req, res) {
     var db = req.db;
     var collection = db.get('markerCollection')
-    //TODO CA FONCTIONNE PAS -> query ne trouve rien
-    // $and: [{lat:{$eq:req.body.lat}}, {lng:{$eq:req.body.lat}}]
-    var query = {devises: "EUROS"};
-    //utiliser find ou findOne
-    collection.findOne({$and: [{lat:{$eq:req.body.lat}}, {lng:{$eq:req.body.lat}}]}).then((data) =>{
+    
+    collection.findOne({}, {_id: 0}, function(err, data){
         console.log("COUCOU"+data);
         res.send(data);
     });

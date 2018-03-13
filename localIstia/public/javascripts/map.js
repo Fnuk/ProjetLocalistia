@@ -8,7 +8,7 @@ function getOneMarker(latlng) {
     url: 'http://localhost:3000/map/markerinfo',
     type: 'POST',
     dataType: "json",
-    data: {"lat": latlng.lat, "lng":latlng.lng},
+    data: {"coordinates": [latlng.lat, latlng.lng]},
     cache: false,
     timeout: 5000,
     success: function(data) {
@@ -45,7 +45,7 @@ function displayAllMarkers(){
         timeout: 5000,
         success: function(data) {
             data.forEach(elem => {
-              var marker = L.marker([elem.lat, elem.lng]).addTo(mymap);
+              var marker = L.marker(elem.coordinates).addTo(mymap);
               marker.on('mouseover', onMarkerMouseOver);
               marker.on('click', onMarkerClick);
             });
