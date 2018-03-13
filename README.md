@@ -23,9 +23,11 @@ Les étudiants souhaitant trouver des informations sur un pays pourront le faire
 2. se placer à la racine du dossier localistia
 3. lancer un terminal
 4. taper la commande suivante : npm install 
-Pré-requis à l'étape 5 :
+
+*Pré-requis à l'étape 5 :
 MongoDB installé 
-Modules installé
+Modules installés*
+
 5. taper la commande suivante : npm start 
 6. aller à l'adresse suivante : http://localhost:3000/
 7. Partager vos expériences
