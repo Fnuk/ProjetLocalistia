@@ -20,14 +20,12 @@ var geocoder = NodeGeocoder(options);
 
 /* GET informations page. */
 router.get('/', function(req, res, next) {
-
-
  res.render('informations');
 
 });
 
 router.post('/sendInfos', function(req, res, next) {
- var dbmarker = req.db.collection('markerCollection');
+ var dbmarker = req.db.get('markerCollection');
 
  var infos = {};
 
@@ -51,20 +49,6 @@ router.post('/sendInfos', function(req, res, next) {
   .catch(function(status) {
    console.log('Geocode was not successful for the following reason: ' + status);
   });
-
-
- //ici inserer les données récupérée du formulaire
- /*dbinfo.insert({
-  "adresse": req.body.inputAddress,
-  "ville": req.body.inputCity,
-  "codePostal": req.body.inputZip,
-  "pays": req.body.inputCountry,
-  "goodDeals": req.body.goodDeals,
-  "devises": req.body.devises,
-  "coutVie": req.body.gridRadios,
-  "contact": req.body.contactMe
- });
- res.redirect('/informations/thanks');*/
 
   console.log("ADRESSE:" + req.body.inputAdresse)
   // update objet à sauver dans la base
