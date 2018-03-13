@@ -4,7 +4,7 @@ Projet HTML - Ei5 Istia - Localisation et description des stages à l'étranger 
 **Membre du projet :**
 * Alice Funk - Principale : Gestion de l'url unique envoyé aux utilisateur + geocoder (récuperer position depuis une adresse), secondaire : tout le reste, 
 * Colin Gachet - Principale : Gestion de la map et des markers + recherche , secondaire : tout le reste
-* Les membres du groupe ont globalement touché à tout.
+*Les membres du groupe ont globalement touché à tout.*
 
 **Technologie utilisées :**
 * Gestion de la map *(+ marker)* : Leaflet
