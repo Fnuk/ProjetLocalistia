@@ -2,7 +2,7 @@
 Projet HTML - Ei5 Istia - Localisation et description des stages à l'étranger des Ei3
 Les étudiants étant parti à l'étranger pourront renseigner les informations concernant la vie et les trucs à savoir sur leur pays d'accueil. Pour ça ils recevront une URL par mail à usage unique. Cet URL les aménera à un formulaire à remplir.
 Les étudiants souhaitant trouver des informations sur un pays pourront le faire via la page d'accueil où il y a la map, via les combobox.
-
+Cliquer sur un marker permettra d'avoir les informations relatives à cet emplacement.
 
 **Membre du projet :**
 * Alice Funk - Principale : Gestion de l'url unique envoyé aux utilisateur + geocoder (récuperer position depuis une adresse), secondaire : tout le reste, 
