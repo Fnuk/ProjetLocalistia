@@ -19,10 +19,33 @@ var options = {
 var geocoder = NodeGeocoder(options);
 
 /* GET informations page. */
-router.get('/', function(req, res, next) {
- res.render('informations');
-
+router.get('/:id', function(req, res, next) {
+  db = req.db.get("singleUrl");
+  if(req.params.id != "thanks"){
+    db.findOne({"hash":Number(req.params.id)}, function(err, result){
+      if(err){
+        res.redirect('/');
+      }
+      if(result != null){
+        if(result.hash == Number(req.params.id) && result.state == "1"){
+          db.update({"hash":Number(req.params.id)},{ $set : {"state":"0"} });
+          res.render('informations');
+        }else{
+          res.render('oups');
+        }
+      }else{
+          res.render('oups');
+      }
+      
+    });
+  }else{
+    res.render('thanks');
+  }
+  
+    
 });
+
+
 
 router.post('/sendInfos', function(req, res, next) {
  var dbmarker = req.db.get('markerCollection');
@@ -55,6 +78,10 @@ router.post('/sendInfos', function(req, res, next) {
 
 router.get('/thanks', function(req, res, next) {
  res.render('thanks');
+});
+
+router.get('/oups', function(req, res, next) {
+ res.render('oups');
 });
 
 module.exports = router;

@@ -77,5 +77,4 @@ if(pathname === '/'){
       id: 'mapbox.streets',
       accessToken: 'pk.eyJ1Ijoic2Vyb3phciIsImEiOiJjamVpd3J6M2owN3EwMnhwaGFuaWxicmpyIn0.NmUTfrLP7Kham8myNxeBRg'
   }).addTo(mymap);
-mymap.on('click', displayAllMarkers);
 }
