@@ -8,7 +8,7 @@ function getOneMarker(latlng) {
     url: 'http://localhost:3000/map/markerinfo',
     type: 'POST',
     dataType: "json",
-    data: {"coordinates":latlng},
+    data: {"lat": latlng.lat, "lng":latlng.lng},
     cache: false,
     timeout: 5000,
     success: function(data) {
@@ -23,9 +23,9 @@ function getOneMarker(latlng) {
 function onMarkerMouseOver(event){
   var data = getOneMarker(event.latlng);
   var popup = L.popup()
-    popup.setLatLng(event.latlng)
-         .setContent("Adresse :"+ data.adresse + "\n" + "Commentaire :" + data.goodDeals.subString(0,50)+"...(Clic pour voir +)")
-         .openOn(mymap);
+  popup.setLatLng(event.latlng)
+        .setContent("Adresse :"+ data.adresse + "\n" + "Commentaire :" + data.goodDeals.subString(0,50)+"...(Clic pour voir +)")
+        .openOn(mymap);
 }
 
 function onMarkerClick(event){
@@ -45,7 +45,7 @@ function displayAllMarkers(){
         timeout: 5000,
         success: function(data) {
             data.forEach(elem => {
-              var marker = L.marker(elem.coordinates).addTo(mymap);
+              var marker = L.marker([elem.lat, elem.lng]).addTo(mymap);
               marker.on('mouseover', onMarkerMouseOver);
               marker.on('click', onMarkerClick);
             });
@@ -55,7 +55,7 @@ function displayAllMarkers(){
         }
     });
 }
-var mymap = L.map('map').setView([51.505, -0.09], 5);
+var mymap = L.map('map').setView([49.505, -0.09], 5);
 
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
