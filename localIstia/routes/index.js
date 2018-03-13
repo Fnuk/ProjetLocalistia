@@ -16,6 +16,22 @@ var transporter = mailer.createTransport({
 //Gestion des routes localhost.../
 /* GET home page. */
 router.get('/', function(req, res, next) {
+ var collection = req.db.collection('markerCollection');
+ var dataPays;
+  collection.find({}, {pays: 1}, function(err, data){
+        if(err) console.log('Erreur :' + err);
+        console.log(data)
+        dataPays = data;
+    });
+
+  var liste = document.getElementById('idPays');
+  for(var i = 0; i < dataPays.length; i++) {
+        var opt = document.createElement('option');
+        opt.innerHTML = dataPays[i];
+        opt.value = dataPays[i];
+        liste.appendChild(opt);
+  }  
+  
   res.render('index', { title: 'LOCALISTIA' });
 
 });

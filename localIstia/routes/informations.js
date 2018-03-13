@@ -28,36 +28,33 @@ router.get('/', function(req, res, next) {
 
 router.post('/sendInfos', function(req, res, next) {
  var dbmarker = req.db.collection('markerCollection');
-<<<<<<< HEAD
-console.log(req.body)
-=======
+
  var infos = {};
 
->>>>>>> fe4fecd0e1a44608f6ccd454684af58c27784a99
  //on géolocalise le lieu via l'adresse
  var address = req.body.inputAddress + " " + req.body.inputCity + " " + req.body.inputCountry;
  console.log(address);
  geocoder.geocode(address)
   .then(function(result) {
-<<<<<<< HEAD
+
    console.log(result);
    dbmarker.insert({
     "lat": result[0].latitude,
     "long": result[0].longitude
    });
-=======
+
     console.log(result);
     infos.type = "Point"
-    infos.coordinates = [result[0].geometry.location.lat, result[0].geometry.location.lng]
->>>>>>> fe4fecd0e1a44608f6ccd454684af58c27784a99
+    infos.coordinates = [result[0].latitude, result[0].longitude]
+
   })
   .catch(function(status) {
    console.log('Geocode was not successful for the following reason: ' + status);
   });
 
-<<<<<<< HEAD
+
  //ici inserer les données récupérée du formulaire
- dbinfo.insert({
+ /*dbinfo.insert({
   "adresse": req.body.inputAddress,
   "ville": req.body.inputCity,
   "codePostal": req.body.inputZip,
@@ -67,8 +64,8 @@ console.log(req.body)
   "coutVie": req.body.gridRadios,
   "contact": req.body.contactMe
  });
- res.redirect('/informations/thanks');
-=======
+ res.redirect('/informations/thanks');*/
+
   console.log("ADRESSE:" + req.body.inputAdresse)
   // update objet à sauver dans la base
   infos.adresse = req.body.inputAdresse,
@@ -84,7 +81,7 @@ console.log(req.body)
   dbmarker.insert(infos);
   console.log("Insertion réussie:" + infos)
   res.redirect('/informations/thanks');
->>>>>>> fe4fecd0e1a44608f6ccd454684af58c27784a99
+
 });
 
 router.get('/thanks', function(req, res, next) {
