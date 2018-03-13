@@ -20,7 +20,9 @@ router.post('/markerinfo', function(req, res) {
     // $and: [{lat:{$eq:req.body.lat}}, {lng:{$eq:req.body.lat}}]
     var query = {devises: "EUROS"};
     //utiliser find ou findOne
-    collection.findOne({$and: [{lat:{$eq:req.body.lat}}, {lng:{$eq:req.body.lat}}]}).then((data) =>{
+    console.log(req.body.lat);
+    console.log(req.body.lng);
+    collection.findOne({"lat":req.latlng.lat, "lng":req.latlng.lng}).then((data) =>{
         console.log("COUCOU"+data);
         res.send(data);
     });

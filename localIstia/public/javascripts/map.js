@@ -22,16 +22,15 @@ function getOneMarker(latlng) {
 }
 
 function onMarkerMouseOver(event){
-  console.log(event);
-  var data = getOneMarker(event);
+  var data = getOneMarker(event.latlng);
   var popup = L.popup()
-  popup.setLatLng(event)
+  popup.setLatLng(event.latlng)
         .setContent("Adresse :"+ data.adresse + "\n" + "Commentaire :" + data.goodDeals.subString(0,50)+"...(Clic pour voir +)")
         .openOn(mymap);
 }
 
 function onMarkerClick(event){
-  var data = getOneMarker(event);
+  var data = getOneMarker(event.latlng);
   toggleSearchInfo();
   $("textarea#accomodations").val(data.adresse + "\n" + data.contactMe)
   $("textarea#devise").val(data.devises + "\n" + data.coutVie)
@@ -47,7 +46,7 @@ function displayAllMarkers(){
         timeout: 5000,
         success: function(data) {   
             data.forEach(elem => {
-              var marker = L.marker(elem.coordinates).addTo(mymap);
+              var marker = L.marker([elem.lat, elem.long]).addTo(mymap);
               marker.on('mouseover', onMarkerMouseOver);
               marker.on('click', onMarkerClick);
             });
